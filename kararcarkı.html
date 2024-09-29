@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma Tasarım Çarkı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Forma Tasarımı İçin Çarkı Çevir</h1>
+
+    <div>
+        <h2>Forma Markası</h2>
+        <button onclick="spinBrand()">Marka Seç</button>
+        <p id="brand"></p>
+    </div>
+
+    <div>
+        <h2>Lig</h2>
+        <button onclick="spinLeague()">Lig Seç</button>
+        <p id="league"></p>
+    </div>
+
+    <div>
+        <h2>Takım</h2>
+        <button onclick="spinTeam()">Takım Seç</button>
+        <p id="team"></p>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        const brands = ["Nike", "Adidas", "Puma", "Under Armour", "Kappa"];
+        const leagues = ["Trendyol Süper Lig"];
+        const teams = {
+            "Trendyol Süper Lig": [
+                "ADANA DEMİRSPOR A.Ş.",
+                "ANTALYASPOR A.Ş.",
+                "ATAKAŞ HATAYSPOR",
+                "BELLONA KAYSERİSPOR",
+                "BEŞİKTAŞ A.Ş.",
+                "CORENDON ALANYASPOR",
+                "ÇAYKUR RİZESPOR A.Ş.",
+                "FENERBAHÇE A.Ş.",
+                "GALATASARAY A.Ş.",
+                "GAZİANTEP FUTBOL KULÜBÜ A.Ş.",
+                "GÖZTEPE A.Ş.",
+                "İKAS EYÜPSPOR",
+                "KASIMPAŞA A.Ş.",
+                "NET GLOBAL SİVASSPOR",
+                "RAMS BAŞAKŞEHİR FUTBOL KULÜBÜ",
+                "SAMSUNSPOR A.Ş.",
+                "SİPAY BODRUM FK",
+                "TRABZONSPOR A.Ş.",
+                "TÜMOSAN KONYASPOR"
+            ]
+        };
+
+        function spinBrand() {
+            const randomBrand = brands[Math.floor(Math.random() * brands.length)];
+            document.getElementById("brand").innerText = randomBrand;
+        }
+
+        function spinLeague() {
+            const randomLeague = leagues[Math.floor(Math.random() * leagues.length)];
+            document.getElementById("league").innerText = randomLeague;
+            document.getElementById("team").innerText = ""; // Lig değiştiğinde takımı temizle
+        }
+
+        function spinTeam() {
+            const selectedLeague = document.getElementById("league").innerText;
+            if (selectedLeague) {
+                const teamsForLeague = teams[selectedLeague];
+                const randomTeam = teamsForLeague[Math.floor(Math.random() * teamsForLeague.length)];
+                document.getElementById("team").innerText = randomTeam;
+            } else {
+                alert("Önce bir lig seçmelisiniz!");
+            }
+        }
+    </script>
+
+</body>
+</html>
